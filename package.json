@@ -1,0 +1,31 @@
+{
+  "name": "sdc",
+  "version": "1.0.0",
+  "description": "SDC - Ratings & Reviews service",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon ./server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Engelagel/j-reviews.git"
+  },
+  "keywords": [
+    "SDC",
+    "reviews",
+    "service"
+  ],
+  "author": "Jackson Reinagel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Engelagel/j-reviews/issues"
+  },
+  "homepage": "https://github.com/Engelagel/j-reviews#readme",
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.15"
+  }
+}
