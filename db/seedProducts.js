@@ -6,19 +6,19 @@ var products = [];
 
 var generateProducts = new Promise((resolve, reject) => {
   let n = 0;
-  while (n < 10000000) {
+  while (n < 10) {
     products.push(
       {
         product_id: n,
-        name: faker.random.words(2),
-        slogan: faker.random.words(4),
+        name: faker.commerce.productName(),
+        slogan: faker.company.catchPhrase(),
         description: faker.random.words(15),
-        category: faker.random.words(1),
-        default_price: faker.random.number(200),
+        category: faker.commerce.department(),
+        default_price: faker.commerce.price(),
         features: [
           {
             feature: faker.random.words(1),
-            value: faker.random.words(2)
+            value: faker.commerce.productMaterial()
           }
         ]
       }
