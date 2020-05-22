@@ -4,8 +4,9 @@
   "description": "SDC - Ratings & Reviews service",
   "main": "index.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon ./server/index.js"
+    "seed": "node db/seedProducts.js",
+    "server": "nodemon ./server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,11 @@
   },
   "homepage": "https://github.com/Engelagel/j-reviews#readme",
   "devDependencies": {
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "mongoose": "^5.9.15"
   }
 }
