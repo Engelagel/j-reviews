@@ -5,7 +5,7 @@ const now = require('performance-now');
 
 var reviews = [];
 
-var generateReviews = new Promise((resolve, reject) => {
+function generateReviews() {
   let n = 1;
   while (n <= 1000000) {
     reviews.push({
@@ -34,23 +34,22 @@ var generateReviews = new Promise((resolve, reject) => {
       }
     });
     n++;
+    if (reviews.length === 100000) {
+      writeReviews();
+      reviews = [];
+    }
   }
-  if (reviews.length === 1000000) {
-    resolve('1M reviews generated');
-  }
-});
+};
 
-let fakeReviews = Promise.resolve(generateReviews);
+// let fakeReviews = Promise.resolve(generateReviews);
 
 let json = fs.createWriteStream('db/reviews.json');
 
 function writeReviews() {
   console.log(now());
-  fakeReviews.then((value) => {
-    json.write(JSON.stringify(reviews, null, 2) + ',\n', (err) => {
-      console.log(err || 'reviews written');
-    });
-  }).then(console.log(now()));
+  json.write(JSON.stringify(reviews, null, 2) + ',\n', (err) => {
+    console.log(err || 'reviews written at ' + now());
+  });
 };
 
-writeReviews();
+generateReviews();

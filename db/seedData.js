@@ -2,15 +2,15 @@ const Review = require('./Review');
 const Product = require('./index');
 const Promise = require('bluebird');
 const now = require('performance-now');
-const products = require('./products.json');
+// const products = require('./products.json');
 const reviews = require('./reviews.json');
 
-function insertProducts() {
-  console.log('adding products at ' + now());
-  Product.insertMany(products, (err, docs) => {
-    console.log(err || docs.length + ' products saved at ' + now());
-  });
-};
+// function insertProducts() {
+//   console.log('adding products at ' + now());
+//   Product.insertMany(products, (err, docs) => {
+//     console.log(err || docs.length + ' products saved at ' + now());
+//   });
+// };
 
 //////// Insert from json file:
 function insertReviews() {
@@ -20,7 +20,7 @@ function insertReviews() {
   });
 };
 
-insertProducts();
+// insertProducts();
 insertReviews();
 
 
