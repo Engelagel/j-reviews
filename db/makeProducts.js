@@ -1,12 +1,13 @@
-const Product = require('./index');
 const faker = require('faker');
 const Promise = require('bluebird');
+const fs = require('fs');
+const now = require('performance-now');
 
 var products = [];
 
 var generateProducts = new Promise((resolve, reject) => {
-  let n = 0;
-  while (n < 10) {
+  let n = 1;
+  while (n <= 10000) {
     products.push(
       {
         product_id: n,
@@ -25,12 +26,22 @@ var generateProducts = new Promise((resolve, reject) => {
     );
     n++;
   }
+  if (products.length === 10000) {
+    resolve('10k products generated');
+  }
 });
 
-function insertProducts() {
-  Product.insertMany(products, (err, docs) => {
-    console.log(err || docs.length + ' products saved');
-  });
+let fakeProducts = Promise.resolve(generateProducts);
+
+let json = fs.createWriteStream('db/products.json');
+
+function makeProducts() {
+  console.log(now());
+  fakeProducts.then((value) => {
+    json.write(JSON.stringify(products, null, 2) + ',\n', (err) => {
+      console.log(err || 'products made');
+    });
+  }).then(console.log(now()));
 };
 
-insertProducts();
+makeProducts();

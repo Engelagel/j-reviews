@@ -1,13 +1,13 @@
-const Review = require('./Review');
 const faker = require('faker');
 const Promise = require('bluebird');
-const db = require('./index');
+const fs = require('fs');
+const now = require('performance-now');
 
 var reviews = [];
 
 var generateReviews = new Promise((resolve, reject) => {
-  let n = 0;
-  while (n < 100000) {
+  let n = 1;
+  while (n <= 1000000) {
     reviews.push({
       product_id: n,
       review_id: Number('0' + n),
@@ -35,12 +35,22 @@ var generateReviews = new Promise((resolve, reject) => {
     });
     n++;
   }
+  if (reviews.length === 1000000) {
+    resolve('1M reviews generated');
+  }
 });
 
-function insertReviews() {
-  Review.insertMany(reviews, (err, docs) => {
-    console.log(err || docs.length + ' reviews saved');
-  });
+let fakeReviews = Promise.resolve(generateReviews);
+
+let json = fs.createWriteStream('db/reviews.json');
+
+function writeReviews() {
+  console.log(now());
+  fakeReviews.then((value) => {
+    json.write(JSON.stringify(reviews, null, 2) + ',\n', (err) => {
+      console.log(err || 'reviews written');
+    });
+  }).then(console.log(now()));
 };
 
-insertReviews();
+writeReviews();

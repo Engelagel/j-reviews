@@ -27,8 +27,12 @@
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "csv-parser": "^2.3.2",
+    "event-stream": "^4.0.1",
     "express": "^4.17.1",
     "faker": "^4.1.0",
-    "mongoose": "^5.9.15"
+    "fs": "0.0.1-security",
+    "mongoose": "^5.9.15",
+    "performance-now": "^2.1.0"
   }
 }
