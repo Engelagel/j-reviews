@@ -1,3 +1,5 @@
 node_modules
 fec/
 package-lock.json
+reviews.json
+products.json

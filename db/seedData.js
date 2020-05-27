@@ -15,9 +15,19 @@ const reviews = require('./reviews.json');
 //////// Insert from json file:
 function insertReviews() {
   console.log('adding reviews at ' + now());
-  Review.insertMany(reviews, (err, docs) => {
-    console.log(err || docs.length + ' reviews saved at ' + now());
-  });
+  fs.createReadStream('./db/reviews.json')
+    .pipe(es.split())
+    .pipe(es.parse())
+    .pipe(es.through(
+      function write(data) {
+        Review.insertMany(data, (err, docs) => {
+          console.log(err || docs.length + ' reviews saved at ' + now());
+        })
+      },
+      function end () {
+        this.emit('end')
+      })
+    )
 };
 
 // insertProducts();
@@ -32,24 +42,12 @@ const es = require('event-stream');
 const csv = require('csv-parser');
 const reviews = [];
 
+  Review.insertMany(reviews, (err, docs) => {
+    console.log(err || docs.length + ' reviews saved at ' + now());
+  });
+
 function insertReviews() {
   console.log(now());
-  fs.createReadStream('./db/reviews.csv')
-    .pipe(es.split())
-    .pipe(csv())
-    .pipe(es.parse())
-    .pipe(es.through(
-      function write(data) {
-        this.emit('data', data)
-      },
-      function end () {
-        this.emit('end')
-      })
-    )
-    .on('end', () => {
-      Review.insertMany(reviews, (err, docs) => {
-        console.log(err || docs.length + ' reviews saved at ' + now());
-      })
-    })
+
 };
 */

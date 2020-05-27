@@ -4,7 +4,9 @@
   "description": "SDC - Ratings & Reviews service",
   "main": "index.jsx",
   "scripts": {
-    "seed": "node db/seedProducts.js",
+    "generate": "node db/makeReviews.js",
+    "prodSeed": "mongoimport --db=sdc --collection=products --type=json --file=./db/products.json",
+    "revSeed": "mongoimport --db=sdc --collection=reviews --file=./db/reviews.json",
     "server": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,5 +36,8 @@
     "fs": "0.0.1-security",
     "mongoose": "^5.9.15",
     "performance-now": "^2.1.0"
+  },
+  "dependencies": {
+    "mongodb": "^3.5.7"
   }
 }

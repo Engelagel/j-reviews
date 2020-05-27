@@ -1,14 +1,10 @@
 const faker = require('faker');
-const Promise = require('bluebird');
 const fs = require('fs');
-const now = require('performance-now');
-
-var reviews = [];
 
 function generateReviews() {
   let n = 1;
-  while (n <= 1000000) {
-    reviews.push({
+  while (n <= 10000000) {
+    let review = {
       product_id: n,
       review_id: Number('0' + n),
       rating: faker.random.number(5),
@@ -32,24 +28,11 @@ function generateReviews() {
         Comfort: faker.helpers.randomize(['Uncomfortable', 'Slightly uncomfortable', 'Okay', 'Comfortable', 'Perfect']),
         Quality: faker.helpers.randomize(['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'])
       }
-    });
+    };
     n++;
-    if (reviews.length === 100000) {
-      writeReviews();
-      reviews = [];
-    }
+    fs.writeFileSync('db/reviews.json', JSON.stringify(review), { flag: 'as' });
+    if (n % 100000 === 0) console.log(n + ' reviews written');
   }
-};
-
-// let fakeReviews = Promise.resolve(generateReviews);
-
-let json = fs.createWriteStream('db/reviews.json');
-
-function writeReviews() {
-  console.log(now());
-  json.write(JSON.stringify(reviews, null, 2) + ',\n', (err) => {
-    console.log(err || 'reviews written at ' + now());
-  });
 };
 
 generateReviews();
