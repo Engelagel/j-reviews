@@ -5,7 +5,7 @@ mongoose.connect('mongodb://localhost/sdc', { useNewUrlParser: true, useUnifiedT
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Mongoose cxn err: '));
-db.once('open', () => console.log('Mongoose cxn successful at ' + now()));
+db.once('open', () => console.log('Mongoose cxn successful'));
 
 var productSchema = new mongoose.Schema({
   product_id: Number,

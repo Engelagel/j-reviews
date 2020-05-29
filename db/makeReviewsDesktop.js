@@ -2,11 +2,11 @@ const faker = require('faker');
 const fs = require('fs');
 
 function generateReviews() {
-  let n = 1;
+  let n = 5523747;
   while (n <= 10000000) {
     let review = {
       product_id: n,
-      review_id: Number('9' + n),
+      review_id: Number('3' + n),
       rating: faker.random.number(5),
       summary: faker.random.words(7),
       recommend: faker.random.number(1),
@@ -17,7 +17,7 @@ function generateReviews() {
       email: faker.internet.email(),
       helpfulness: faker.random.number(10),
       photos: [{
-        id: Number('9' + n),
+        id: Number('3' + n),
         url: faker.image.fashion()
       }],
       characteristics: {
@@ -29,8 +29,8 @@ function generateReviews() {
         Quality: faker.helpers.randomize(['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'])
       }
     };
-    n+=6;
-    fs.writeFileSync('C:/Users/jreinagel4/Documents/reviews.csv', JSON.stringify(review), { flag: 'as' });
+    n++;
+    fs.writeFileSync('C:/Users/Jackson/Documents/Hack Reactor/SDC/reviews5523747.csv', JSON.stringify(review), { flag: 'as' });
     if (n % 100000 === 0) console.log(n + ' reviews written');
   }
 };

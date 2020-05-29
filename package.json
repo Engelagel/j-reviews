@@ -5,8 +5,8 @@
   "main": "index.jsx",
   "scripts": {
     "generate": "node db/makeReviews.js",
-    "prodSeed": "mongoimport --db=sdc --collection=products --type=json --file=./db/products.json",
-    "revSeed": "mongoimport --db=sdc --collection=reviews --file=./db/reviews.json",
+    "prodSeed": "mongoimport --db=sdc --collection=products --type=json --file=./db/products.csv",
+    "revSeed": "mongoimport --db=sdc --collection=reviews --type=json --file=./db/reviews.csv",
     "server": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,6 +35,7 @@
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
     "mongoose": "^5.9.15",
+    "morgan": "^1.10.0",
     "performance-now": "^2.1.0"
   },
   "dependencies": {
