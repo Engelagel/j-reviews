@@ -29,17 +29,23 @@ app.get('/reviews/:productID/meta', (req, res) => {
 
 app.post('/reviews/:productID', async (req, res) => {
   console.log('POST = posted new review');
-
+  // await Review.create()
 });
 
 app.put('/reviews/helpful/:reviewID', async (req, res) => {
   console.log('PUT = marked helpful');
-
+  await Review.findOneAndUpdate({ review_id: req.params.reviewID }, { $inc: { helpfulness: 1 } }, (err, doc) => {
+    console.log(doc);
+  })
+  .then(data => res.status(201).send(data))
 });
 
 app.put('/reviews/report/:reviewID', async (req, res) => {
   console.log('PUT = reported review');
-
+  await Review.findOneAndUpdate({ review_id: req.params.reviewID }, { reported: true }, (err, doc) => {
+    console.log(doc);
+  })
+  .then(data => res.status(201).send(data))
 });
 
 app.delete('/', async (req, res) => {

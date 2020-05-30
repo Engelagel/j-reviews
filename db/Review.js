@@ -12,6 +12,7 @@ var reviewSchema = new mongoose.Schema({
   name: String,
   email: String,
   helpfulness: Number,
+  reported: Boolean,
   photos: [{
     id: Number,
     url: String

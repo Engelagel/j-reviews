@@ -3,7 +3,7 @@ const Product = require('./index');
 const Promise = require('bluebird');
 const now = require('performance-now');
 // const products = require('./products.json');
-const reviews = require('./reviews.json');
+// const reviews = require('./reviews.json');
 
 // function insertProducts() {
 //   console.log('adding products at ' + now());
@@ -13,25 +13,33 @@ const reviews = require('./reviews.json');
 // };
 
 //////// Insert from json file:
-function insertReviews() {
-  console.log('adding reviews at ' + now());
-  fs.createReadStream('./db/reviews.json')
-    .pipe(es.split())
-    .pipe(es.parse())
-    .pipe(es.through(
-      function write(data) {
-        Review.insertMany(data, (err, docs) => {
-          console.log(err || docs.length + ' reviews saved at ' + now());
-        })
-      },
-      function end () {
-        this.emit('end')
-      })
-    )
-};
+// function insertReviews() {
+//   console.log('adding reviews at ' + now());
+//   fs.createReadStream('./db/reviews.json')
+//     .pipe(es.split())
+//     .pipe(es.parse())
+//     .pipe(es.through(
+//       function write(data) {
+//         Review.insertMany(data, (err, docs) => {
+//           console.log(err || docs.length + ' reviews saved at ' + now());
+//         })
+//       },
+//       function end () {
+//         this.emit('end')
+//       })
+//     )
+// };
 
 // insertProducts();
-insertReviews();
+// insertReviews();
+
+
+async function addField() {
+  const res = await Review.updateMany({ }, { reported: false }).catch(err => console.log(err.reason));
+  console.log(res.n, res.nModified);
+};
+
+addField();
 
 
 
