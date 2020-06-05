@@ -21,12 +21,12 @@ function generateReviews() {
         url: faker.image.fashion()
       }],
       characteristics: {
-        Size: faker.helpers.randomize(['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too big']),
-        Length: faker.helpers.randomize(['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long']),
-        Width: faker.helpers.randomize(['Too narrow', 'Slightly narrow', 'Perfect', 'Slightly wide', 'Too wide']),
-        Fit: faker.helpers.randomize(['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long']),
-        Comfort: faker.helpers.randomize(['Uncomfortable', 'Slightly uncomfortable', 'Okay', 'Comfortable', 'Perfect']),
-        Quality: faker.helpers.randomize(['Poor', 'Below average', 'What I expected', 'Pretty great', 'Perfect'])
+        Size: faker.random.number(5),
+        Length: faker.random.number(5),
+        Width: faker.random.number(5),
+        Fit: faker.random.number(5),
+        Comfort: faker.random.number(5),
+        Quality: faker.random.number(5)
       }
     };
     n++;

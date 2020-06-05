@@ -6,7 +6,7 @@
   "scripts": {
     "generate": "node db/makeReviews.js",
     "prodSeed": "mongoimport --db=sdc --collection=products --type=json --file=./db/products.csv",
-    "revSeed": "mongoimport --db=sdc --collection=reviews --type=json --file=./db/reviews.csv",
+    "revSeed": "mongoimport --db=sdc --collection=reviews --type=json --file=./db/reviewsNew.csv",
     "server": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -39,6 +39,7 @@
     "performance-now": "^2.1.0"
   },
   "dependencies": {
-    "mongodb": "^3.5.7"
+    "mongodb": "^3.5.7",
+    "newrelic": "^6.8.0"
   }
 }
