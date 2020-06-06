@@ -2,7 +2,7 @@ const faker = require('faker');
 const fs = require('fs');
 
 function updateReviews() {
-  let n = 11090287;
+  let n = 11933988;
   while (n <= 25000000) {
     let review = {
       product: faker.random.number(10000000),

@@ -6,7 +6,7 @@
   "scripts": {
     "generate": "node db/makeReviews.js",
     "prodSeed": "mongoimport --db=sdc --collection=products --type=json --file=./db/products.csv",
-    "revSeed": "mongoimport --db=sdc --collection=reviews --type=json --file=./db/reviewsNew.csv",
+    "revSeed": "mongoimport --db=sdc --collection=reviews --type=json --file=./db/reviewsNew1.csv",
     "server": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

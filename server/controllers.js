@@ -1,15 +1,15 @@
 const Product = require('../db');
 const Review = require('../db/Review');
 
-exports.getProducts = (req, res) => {
+exports.getProducts = async (req, res) => {
   console.log('GOT list of products');
-  Product.find({ })
+  await Product.find({ })     //.limit(50)
     .then(data => res.status(200).send(data))
 };
 
-exports.getList = (req, res) => {
+exports.getList = async (req, res) => {
   console.log('GOT list of reviews');
-  Review.find({ product: req.params.product })
+  await Review.find({ product: req.params.product })
     .then(data => {
       const result = {
         product: req.params.product,
@@ -39,9 +39,9 @@ exports.getList = (req, res) => {
     })
 };
 
-exports.getMeta = (req, res) => {
+exports.getMeta = async (req, res) => {
   console.log('GET = metadata of product');
-  Review.find({ product: req.params.product })
+  await Review.find({ product: req.params.product }, { product: 1, rating: 1, recommend: 1, characteristics: 1 })
   .then(data => {
     const result = {
       product_id: req.params.product,
